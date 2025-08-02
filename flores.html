@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Feliz Día a Mi Novia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    :root {
+      --stem: #2e8b57;
+      --leaf: #3cb371;
+      --bg-top: #fceaff;
+      --bg-bottom: #e6f7ff;
+      --title-gradient: linear-gradient(90deg, #ff5a8a, #d45f9f, #6f70d5);
+      --shadow: rgba(0,0,0,0.08);
+      --heart-bg: #ff5a8a;
+      --heart-glow: rgba(255,90,138,0.4);
+    }
+    *{box-sizing:border-box;}
+    body {
+      margin: 0;
+      min-height:100vh;
+      display:flex;
+      flex-direction: column;
+      align-items:center;
+      background: linear-gradient(to bottom, var(--bg-top) 0%, var(--bg-bottom) 60%, #ffffff 100%);
+      font-family: "Poppins", system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
+      color:#333;
+      padding: 1rem 0 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .title {
+      text-align: center;
+      max-width: 900px;
+      padding: 0 1rem;
+      margin-bottom: 5px;
+    }
+    .title h1 {
+      font-size: 2.2rem;
+      line-height: 1.1;
+      margin: 0;
+      background: var(--title-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 800;
+    }
+    .subtitle {
+      font-size: 0.9rem;
+      margin-top: 6px;
+      color: #555;
+      letter-spacing: 0.5px;
+    }
+
+    /* Corazón grande con foto delante */
+    .heart-container {
+      margin: 2rem 0;
+      position: relative;
+      width: 320px;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .heart {
+      position: relative;
+      width: 320px;
+      height: 270px;
+      transform: scale(1);
+      animation: beat 1.2s ease-in-out infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .heart:before,
+    .heart:after {
+      content: "";
+      position: absolute;
+      width: 150px;
+      height: 220px;
+      background: var(--heart-bg);
+      border-radius: 150px 150px 0 0;
+      top: 0;
+      left: 85px;
+      transform: rotate(-45deg);
+      transform-origin: bottom right;
+    }
+    .heart:after {
+      left: auto;
+      right: 85px;
+      transform: rotate(45deg);
+      transform-origin: bottom left;
+    }
+    .heart-glow-effect {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      border-radius: 50%;
+      box-shadow: 0 0 100px 30px var(--heart-glow);
+      filter: blur(6px);
+      mix-blend-mode: screen;
+    }
+
+    .heart-photo {
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      top: 10px;
+      z-index: 2;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    }
+
+    .heart-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    @keyframes beat {
+      0%,100% { transform: scale(1); }
+      25% { transform: scale(1.08); }
+      40% { transform: scale(0.95); }
+      60% { transform: scale(1.05); }
+      80% { transform: scale(0.98); }
+    }
+
+    .garden {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+      align-items: flex-end;
+      padding: 0 1rem;
+      position: relative;
+      z-index: 1;
+      flex-grow: 1;
+    }
+    .tulip {
+      position: relative;
+      width: 60px;
+      height: 160px;
+      transition: transform .3s;
+      animation: sway 5s ease-in-out infinite alternate;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    .tulip:hover { transform: scale(1.08); }
+
+    .stem {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 8px;
+      height: 140px;
+      background: var(--stem);
+      transform: translateX(-50%);
+      border-radius: 4px;
+      box-shadow: 0 12px 25px var(--shadow);
+    }
+    .leaf {
+      position: absolute;
+      bottom: 35px;
+      width: 38px;
+      height: 18px;
+      background: var(--leaf);
+      border-radius: 50% 50% 0 50%;
+      filter: drop-shadow(0 4px 12px rgba(60,179,113,0.5));
+    }
+    .leaf.left {
+      left: -22px;
+      transform: rotate(-38deg);
+    }
+    .leaf.right {
+      right: -22px;
+      transform: rotate(38deg) scaleX(-1);
+    }
+    .flower {
+      position: absolute;
+      bottom: 120px;
+      left: 50%;
+      width: 60px;
+      height: 60px;
+      transform: translateX(-50%);
+    }
+    .petal {
+      position: absolute;
+      bottom: 0;
+      width: 30px;
+      height: 50px;
+      background: var(--petal-color, #ff5a8a);
+      border-radius: 50% 50% 0 0;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+    .petal.left {
+      left: 0;
+      transform: rotate(-15deg);
+    }
+    .petal.right {
+      right: 0;
+      transform: rotate(15deg);
+    }
+    .petal.center {
+      left: 15px;
+      background: var(--petal-center, #ff739c);
+    }
+
+    .grass {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 100px;
+      background: linear-gradient(to top, #228b22, #32cd32);
+      border-radius: 50% 50% 0 0;
+      z-index: 0;
+    }
+
+    @keyframes sway {
+      from { transform: rotate(-3deg); }
+      to { transform: rotate(3deg); }
+    }
+
+    .tulip.red { --petal-color:#ff4f6e; --petal-center:#ff8aa3; }
+    .tulip.pink { --petal-color:#ff9ecb; --petal-center:#ffd1e8; }
+    .tulip.yellow { --petal-color:#ffe066; --petal-center:#fff3a8; }
+    .tulip.purple { --petal-color:#b18aff; --petal-center:#d9caff; }
+    .tulip.orange { --petal-color:#ffa64d; --petal-center:#ffd9a8; }
+    .tulip.blue { --petal-color:#7ec8ff; --petal-center:#b3e4ff; }
+    .tulip.coral { --petal-color:#ff8f6f; --petal-center:#ffdacc; }
+
+    @media (max-width: 900px){
+      .title h1 { font-size: 1.8rem; }
+      .garden { gap: 18px; }
+      .heart-container {
+        width: 240px;
+        height: 240px;
+      }
+      .heart {
+        width: 240px;
+        height: 210px;
+      }
+      .heart:before,
+      .heart:after {
+        width: 120px;
+        height: 180px;
+        border-radius: 120px 120px 0 0;
+        left: 60px;
+        right: 60px;
+      }
+      .heart-photo {
+        width: 200px;
+        height: 200px;
+        top: 5px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="title">
+    <h1>
+      Feliz día a la mejor novia del mundo,<br/>
+      a la novia de mi vida,<br/>
+      a la novia hermosaaa de mi corazón
+    </h1>
+    <div class="subtitle">Gracias por ser mi luz, mi calma y mi alegría. Te amo con todo mi ser.</div>
+  </div>
+
+  <div class="heart-container" aria-label="Corazón con foto">
+    <div class="heart" aria-hidden="true">
+      <div class="heart-glow-effect"></div>
+    </div>
+    <div class="heart-photo">
+      <img src="/imagenes/WhatsApp Image 2025-08-01 at 11.43.48 AM.jpeg" alt="Foto de mi novia" />
+    </div>
+  </div>
+
+  <div class="garden" aria-label="Jardín de tulipanes">
+    <div class="tulip red"><div class="stem"></div><div class="leaf left"></div><div class="leaf right"></div><div class="flower"><div class="petal left"></div><div class="petal center"></div><div class="petal right"></div></div></div>
+    <div class="tulip pink"><div class="stem"></div><div class="leaf left"></div><div class="leaf right"></div><div class="flower"><div class="petal left"></div><div class="petal center"></div><div class="petal right"></div></div></div>
+    <div class="tulip yellow"><div class="stem"></div><div class="leaf left"></div><div class="leaf right"></div><div class="flower"><div class="petal left"></div><div class="petal center"></div><div class="petal right"></div></div></div>
+    <div class="tulip purple"><div class="stem"></div><div class="leaf left"></div><div class="leaf right"></div><div class="flower"><div class="petal left"></div><div class="petal center"></div><div class="petal right"></div></div></div>
+    <div class="tulip orange"><div class="stem"></div><div class="leaf left"></div><div class="leaf right"></div><div class="flower"><div class="petal left"></div><div class="petal center"></div><div class="petal right"></div></div></div>
+    <div class="tulip blue"><div class="stem"></div><div class="leaf left"></div><div class="leaf right"></div><div class="flower"><div class="petal left"></div><div class="petal center"></div><div class="petal right"></div></div></div>
+    <div class="tulip coral"><div class="stem"></div><div class="leaf left"></div><div class="leaf right"></div><div class="flower"><div class="petal left"></div><div class="petal center"></div><div class="petal right"></div></div></div>
+  </div>
+
+  <div class="grass" aria-hidden="true"></div>
+</body>
+</html>
